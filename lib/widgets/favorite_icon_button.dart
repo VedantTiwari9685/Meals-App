@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/providers/favorites_provider.dart';
 
-class FavoriteIconButton extends StatefulWidget {
+class FavoriteIconButton extends ConsumerStatefulWidget {
   const FavoriteIconButton({
     super.key,
     required this.meal,
-    required this.favoriteMeals,
-    required this.onToggleFavorite,
   });
 
   final Meal meal;
-  final List<Meal> favoriteMeals;
-  final void Function(Meal meal) onToggleFavorite;
 
   @override
   _FavoriteIconButtonState createState() => _FavoriteIconButtonState();
 }
 
-class _FavoriteIconButtonState extends State<FavoriteIconButton> {
+class _FavoriteIconButtonState extends ConsumerState<FavoriteIconButton> {
   late bool isFavorite;
   @override
   void initState() {
     super.initState();
-    isFavorite = widget.favoriteMeals.contains(widget.meal);
+    isFavorite = ref.read(favoriteMealsProvider).contains(widget.meal);
   }
 
   void _toggleFavorite() {
-    widget.onToggleFavorite(widget.meal);
+    final wasAdded = ref
+        .read(favoriteMealsProvider.notifier)
+        .toggleMealFavoriteStatus(widget.meal);
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(wasAdded
+            ? "Meal added as a Favorite!"
+            : "Meal removed from Favorites."),
+      ),
+    );
     setState(() {
       isFavorite = !isFavorite;
     });
