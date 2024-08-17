@@ -44,7 +44,22 @@ class _FavoriteIconButtonState extends ConsumerState<FavoriteIconButton> {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: _toggleFavorite,
-      icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+      icon: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) {
+          return RotationTransition(
+            turns: Tween<double>(
+              begin: 0.85,
+              end: 1,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        child: Icon(
+          isFavorite ? Icons.star : Icons.star_border,
+          key: ValueKey(isFavorite),
+        ),
+      ),
     );
   }
 }
