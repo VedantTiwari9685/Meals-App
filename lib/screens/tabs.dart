@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/favorites_provider.dart';
 import 'package:meals/providers/fliters_provider.dart';
 import 'package:meals/screens/categories.dart';
+import 'package:meals/screens/developer.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
@@ -38,6 +39,13 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
           builder: (ctr) => const FiltersScreen(),
+        ),
+      );
+    }
+    if (identifier == 'developer') {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctr) => DeveloperScreen(),
         ),
       );
     }

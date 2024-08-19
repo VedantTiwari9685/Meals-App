@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meals/screens/splash_screen.dart';
 import 'package:meals/screens/tabs.dart';
 
 final theme = ThemeData(
@@ -27,7 +28,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const TabsScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) =>
+            const SplashScreen(), // Splash Screen as the initial route
+        '/home': (context) =>
+            const TabsScreen(), // TabsScreen as the home route
+      },
     );
   }
 }

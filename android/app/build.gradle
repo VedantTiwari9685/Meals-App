@@ -58,10 +58,18 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    
+    // Ensuring AndroidX is enabled
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'androidx.webkit:webkit:1.5.0'  // WebView dependency for Android
+    // Add any other dependencies you may need here
+}

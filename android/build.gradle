@@ -4,8 +4,8 @@ buildscript {
         google()
         mavenCentral()
     }
-
     dependencies {
+        classpath "com.android.tools.build:gradle:8.0.2"  // Update to the latest version
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -20,9 +20,6 @@ allprojects {
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
 }
 
 tasks.register("clean", Delete) {

@@ -40,4 +40,38 @@ class Meal {
   final bool isLactoseFree;
   final bool isVegan;
   final bool isVegetarian;
+
+  // Convert a Meal object into a Map.
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'categories': categories,
+        'title': title,
+        'imageUrl': imageUrl,
+        'ingredients': ingredients,
+        'steps': steps,
+        'duration': duration,
+        'complexity': complexity.index,
+        'affordability': affordability.index,
+        'isGlutenFree': isGlutenFree,
+        'isLactoseFree': isLactoseFree,
+        'isVegan': isVegan,
+        'isVegetarian': isVegetarian,
+      };
+
+  // Convert a Map into a Meal object.
+  factory Meal.fromJson(Map<String, dynamic> json) => Meal(
+        id: json['id'],
+        categories: List<String>.from(json['categories']),
+        title: json['title'],
+        imageUrl: json['imageUrl'],
+        ingredients: List<String>.from(json['ingredients']),
+        steps: List<String>.from(json['steps']),
+        duration: json['duration'],
+        complexity: Complexity.values[json['complexity']],
+        affordability: Affordability.values[json['affordability']],
+        isGlutenFree: json['isGlutenFree'],
+        isLactoseFree: json['isLactoseFree'],
+        isVegan: json['isVegan'],
+        isVegetarian: json['isVegetarian'],
+      );
 }

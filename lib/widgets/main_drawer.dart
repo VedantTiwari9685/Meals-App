@@ -95,7 +95,9 @@ class MainDrawer extends StatelessWidget {
                     fontSize: 20,
                   ),
             ),
-            onTap: () {},
+            onTap: () {
+              onSelectScreen("developer");
+            },
           ),
         ],
       ),
