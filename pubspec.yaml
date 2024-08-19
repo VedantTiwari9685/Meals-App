@@ -42,9 +42,6 @@ dependencies:
   transparent_image: ^2.0.1
   flutter_riverpod: ^2.5.1
   shared_preferences: ^2.3.2
-  url_launcher: ^6.3.0
-  webview_flutter: ^4.8.0
-  flutter_webview_plugin: ^0.4.0
 
 dev_dependencies:
   flutter_test:
